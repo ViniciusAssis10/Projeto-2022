@@ -1,9 +1,99 @@
 .home-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
   height: 100vh;
   width: 100vw;
 
-  background-color: #434c58;
+  background-color: #202126;
+}
+
+.sidebar-container {
+  height: 100%;
+  width: 200px;
+
+  background-color: #2b3138;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100px;
+  width: 100%;
+
+  font-size: 20px;
+  font-family: "Raleway";
+  font-weight: 500;
+  color: #dddddd;
+}
+
+.buttons-container {
+  height: 150px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .email-btn {
+    margin-top: 15px;
+
+    button {
+      width: 200px;
+      height: 40px;
+      position: relative;
+
+      border: 1px solid #2b3138;
+      background-color: transparent;
+      box-shadow: 2px 2px 6px 1px #202126;
+      color: #dddddd;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.231);
+      }
+    }
+
+    mat-icon {
+      position: absolute;
+      left: 30px;
+      top: 143px;
+      color: #dddddd;
+    }
+  }
+
+  .product-btn {
+    margin-top: 15px;
+
+    button {
+      width: 200px;
+      height: 40px;
+      position: relative;
+
+      border: 1px solid #2b3138;
+      background-color: transparent;
+      box-shadow: 2px 2px 6px 1px #202126;
+      color: #dddddd;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.231);
+      }
+    }
+
+    mat-icon {
+      position: absolute;
+      left: 30px;
+      top: 195px;
+      color: #dddddd;
+    }
+  }
+}
+
+.full-content {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  padding-left: 45px;
 }
