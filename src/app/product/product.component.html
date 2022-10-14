@@ -25,21 +25,24 @@
           <span>Adicionar produto</span>
           <div class="inputs">
             <div>
-              <span>Nome</span>
-              <input type="text" placeholder="Nome" />
+              <span>Nome*</span>
+              <input type="text" placeholder="Nome" [(ngModel)]="productCreated.name" />
             </div>
             <div>
-              <span>Preço</span>
-              <input type="text" placeholder="Preço" />
+              <span>Preço*</span>
+              <input type="number" placeholder="Preço" [(ngModel)]="productCreated.price" />
             </div>
             <div class="description">
-              <span>Descrição</span>
-              <input type="text" placeholder="Descrição" />
+              <span>Descrição*</span>
+              <input type="text" placeholder="Descrição" [(ngModel)]="productCreated.description" />
             </div>
+          </div>
+          <div *ngIf="invalid">
+            <span>Preencha os campos obrigatórios</span>
           </div>
         </div>
         <div class="btn-box">
-          <button>Adicionar</button>
+          <button (click)="addProduct()">Adicionar</button>
         </div>
       </div>
       <div class="body-container">

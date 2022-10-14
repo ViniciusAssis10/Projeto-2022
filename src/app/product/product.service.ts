@@ -15,4 +15,12 @@ export class ProductService {
     return this.http.get(`http://localhost:8080/product`);
   }
 
+  getProduct(id: number): Observable<any> {
+    return this.http.get(`http://localhost:8080/product/${id}`);
+  }
+
+  addProduct(body: any): Observable<any> {
+    return this.http.post(`http://localhost:8080/product`, body)
+  }
+
 }

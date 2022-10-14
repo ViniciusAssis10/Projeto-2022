@@ -9,33 +9,16 @@ import { ProductService } from './product.service';
 })
 export class ProductComponent implements OnInit {
 
-  rows: any = [
-    {
-      name: 'iphone',
-      description: 'smartphone',
-      price: '5.000,00',
-    },
-    {
-      name: 'samsung',
-      description: 'smartphone',
-      price: '2.000,00',
-    },
-    {
-      name: 'lamborghini',
-      description: 'carro',
-      price: '1.000.000,00',
-    },
-    {
-      name: 'ferrari',
-      description: 'carro',
-      price: '2.000.000,00',
-    },
-  ];
+  rows: any = [];
+
+  productCreated: {name: string, description: string, price: number} = {name:"", description:"", price: 0};
+
+  invalid: boolean = false;
 
   constructor(private router: Router, private productService: ProductService) { }
 
   ngOnInit(): void {
-    // this.getAll();
+    this.getAll();
   }
 
   toEmail() {
@@ -46,11 +29,35 @@ export class ProductComponent implements OnInit {
     this.router.navigate(['/product']);
   }
 
-  // getAll() {
-  //   this.productService.getAll().subscribe((res) => {
-  //     console.log(res);
+  getAll() {
+    this.productService.getAll().subscribe((res) => {
+      this.rows = res;
+      this.invalid = false;
+    })
+  }
 
-  //   })
-  // }
+  getProduct(id: number) {
+    this.productService.getProduct(id).subscribe((res) => {
+      console.log(res);
+
+    })
+  }
+
+  addProduct() {
+    if (!this.productCreated.description || !this.productCreated.name || !this.productCreated.price) {
+      this.invalid = true;
+      return
+    }
+
+    this.invalid = false;
+
+    this.productService.addProduct(this.productCreated).subscribe((res) => {
+      this.productCreated.name = '',
+      this.productCreated.description = '',
+      this.productCreated.price = 0
+      this.getAll();
+
+    })
+  }
 
 }
