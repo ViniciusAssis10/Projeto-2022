@@ -4,11 +4,11 @@
     <div class="title">Sprint 4</div>
     <div class="buttons-container">
       <div class="email-btn">
-        <button>E-mails</button>
+        <button (click)="toEmail()">E-mails</button>
         <mat-icon>mail</mat-icon>
       </div>
       <div class="product-btn">
-        <button>Produtos</button>
+        <button (click)="toProduct()">Produtos</button>
         <mat-icon>shopping_bag</mat-icon>
       </div>
     </div>
@@ -26,17 +26,19 @@
           <input type="date" />
         </div>
       </div>
-      <div class="body-content">
-        <div class="row-content">
-          <div class="destiny">
-            <label>lucao@gmail.com</label>
-            <label>Assunto</label>
-          </div>
-          <div class="text">
-            <span>texto escrito no email aqui</span>
-          </div>
-          <div class="date">
-            <label>30/12/2022</label>
+      <div class="body-container">
+        <div *ngFor="let row of rows" class="body-content">
+          <div class="row-content">
+            <div class="destiny">
+              <label>{{ row.destiny }}</label>
+              <label>{{ row.subject }}</label>
+            </div>
+            <div class="text">
+              <span>{{ row.text }}</span>
+            </div>
+            <div class="date">
+              <label>{{ row.createdAt }}</label>
+            </div>
           </div>
         </div>
       </div>
