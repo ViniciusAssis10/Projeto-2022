@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
@@ -7,30 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  rows: any = [
-    {
-      text: 'terminei hoje',
-      destiny: 'lucao@gmail.com',
-      subject: 'trabalho facul',
-      createdAt: '14/10/2022'
-    },
-    {
-      text: 'terminei hoje',
-      destiny: 'lucao@gmail.com',
-      subject: 'ai calica',
-      createdAt: '14/10/2022'
-    },
-    {
-      text: 'terminei hoje',
-      destiny: 'gilbertopimpolho@gmail.com',
-      subject: 'chupa lucão',
-      createdAt: '14/10/2022'
-    },
-  ];
+  rows: any = [];
+  rowsFiltered: any = [];
 
-  constructor(private router: Router) {}
+  date: any;
 
-  ngOnInit(): void {}
+  constructor(private router: Router, private homeService: HomeService) {}
+
+  ngOnInit(): void {
+    this.getEmail();
+  }
 
   toEmail() {
     this.router.navigate(['/home']);
@@ -38,5 +25,19 @@ export class HomeComponent implements OnInit {
 
   toProduct() {
     this.router.navigate(['/product']);
+  }
+
+  getEmail() {
+  this.homeService.getEmail().subscribe((res) => {
+    this.rows = res;
+    this.rowsFiltered = this.rows;
+  })
+  }
+
+  filterDate(date: any) {
+    console.log(date);
+    console.log(this.rows);
+
+    this.rowsFiltered = this.rows.filter((row: any) => row.createdAt.slice(0, 10) == date);
   }
 }

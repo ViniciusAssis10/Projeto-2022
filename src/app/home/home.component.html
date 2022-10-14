@@ -23,11 +23,11 @@
       <div class="filter-bar">
         <span>Filtrar</span>
         <div>
-          <input type="date" />
+          <input type="date" [(ngModel)]="date" (ngModelChange)="filterDate($event)" />
         </div>
       </div>
       <div class="body-container">
-        <div *ngFor="let row of rows" class="body-content">
+        <div *ngFor="let row of rowsFiltered" class="body-content">
           <div class="row-content">
             <div class="destiny">
               <label>{{ row.destiny }}</label>
@@ -37,7 +37,7 @@
               <span>{{ row.text }}</span>
             </div>
             <div class="date">
-              <label>{{ row.createdAt }}</label>
+              <label>{{ row.createdAt | date: 'dd/MM/yyyy HH:mm'  }}</label>
             </div>
           </div>
         </div>

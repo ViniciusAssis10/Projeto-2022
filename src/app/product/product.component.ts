@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from './product.service';
 
 @Component({
   selector: 'app-product',
@@ -31,9 +32,10 @@ export class ProductComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private productService: ProductService) { }
 
   ngOnInit(): void {
+    // this.getAll();
   }
 
   toEmail() {
@@ -43,5 +45,12 @@ export class ProductComponent implements OnInit {
   toProduct() {
     this.router.navigate(['/product']);
   }
+
+  // getAll() {
+  //   this.productService.getAll().subscribe((res) => {
+  //     console.log(res);
+
+  //   })
+  // }
 
 }
